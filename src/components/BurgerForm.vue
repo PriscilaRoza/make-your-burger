@@ -1,6 +1,6 @@
 <template>
 <div>
-<p>Componente de mensagem</p>
+<Msg :msg="msg" v-show="msg"/>
 <div>
     <form id="burger-form" @submit="createBurger">
     <div class="input-container">
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import Msg from './Msg.vue';
 export default {
     name: "BurgerForm",
     data() {
@@ -60,19 +61,21 @@ export default {
             carne: null,
             opcionais: [],
             msg: null
-        }
+        };
     },
     mounted() {
-        this.getIngredientes();  
+        this.getIngredientes();
+    },
+    components: {
+        Msg,
     },
     methods: {
         async getIngredientes() {
             const req = await fetch("http://localhost:3000/ingredientes");
             const data = await req.json();
-
-            this.paes = data.paes
-            this.carnes = data.carnes
-            this.opcionaisdata = data.opcionais
+            this.paes = data.paes;
+            this.carnes = data.carnes;
+            this.opcionaisdata = data.opcionais;
         },
         async createBurger(e) {
             e.preventDefault();
@@ -82,29 +85,28 @@ export default {
                 pao: this.pao,
                 opcionais: Array.from(this.opcionais),
                 status: "Solicitado",
-            }
+            };
             //aqui converte o Json em texto
-            const dataJson = JSON.stringify(data)
-
+            const dataJson = JSON.stringify(data);
             const req = await fetch("http://localhost:3000/burgers", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: dataJson
             });
             //para visualizar os dados enviados
-            //const res = await req.json();
-
-            //Falta fazer:
+            const res = await req.json();
             //colocar uma msg de sistema
-            //limpar msg
-
+            this.msg = `Pedido Nº ${res.id} Realizado com sucesso!`;
+            //limpar o alerta depois de 3 segundos
+            setTimeout(() => this.msg = "", 3000);
             //limpar os campos
             this.nome = "",
-            this.carne = "",
-            this.pao = "",
-            this.opcionais = ""
+                this.carne = "",
+                this.pao = "",
+                this.opcionais = "";
         },
-    }
+    },
+    components: { Msg }
 }
 </script>
 
