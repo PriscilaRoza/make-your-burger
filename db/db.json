@@ -87,7 +87,7 @@
         "Salame",
         "Cebola roxa"
       ],
-      "status": "Finalizado",
+      "status": "Solicitado",
       "id": 1
     },
     {
@@ -178,7 +178,7 @@
       "carne": "Veggie burger",
       "pao": "Parmesão e Orégano",
       "opcionais": [],
-      "status": "Solicitado",
+      "status": "Em produção",
       "id": 13
     },
     {
