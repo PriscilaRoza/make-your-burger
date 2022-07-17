@@ -133,18 +133,6 @@
         "Pepino"
       ],
       "status": "Solicitado",
-      "id": 7
-    },
-    {
-      "nome": "Maria Joaquina",
-      "carne": "Veggie burger",
-      "pao": "Integral",
-      "opcionais": [
-        "Tomate",
-        "Cebola roxa",
-        "Pepino"
-      ],
-      "status": "Solicitado",
       "id": 8
     },
     {
