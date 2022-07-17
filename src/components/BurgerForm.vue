@@ -2,7 +2,7 @@
 <div>
 <p>Componente de mensagem</p>
 <div>
-    <form id="burger-form">
+    <form id="burger-form" @submit="createBurger">
     <div class="input-container">
         <label for="nome">Nome do Cliente</label>
         <input
@@ -59,7 +59,6 @@ export default {
             pao: null,
             carne: null,
             opcionais: [],
-            status: "Solicitado",
             msg: null
         }
     },
@@ -74,6 +73,36 @@ export default {
             this.paes = data.paes
             this.carnes = data.carnes
             this.opcionaisdata = data.opcionais
+        },
+        async createBurger(e) {
+            e.preventDefault();
+            const data = {
+                nome: this.nome,
+                carne: this.carne,
+                pao: this.pao,
+                opcionais: Array.from(this.opcionais),
+                status: "Solicitado",
+            }
+            //aqui converte o Json em texto
+            const dataJson = JSON.stringify(data)
+
+            const req = await fetch("http://localhost:3000/burgers", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: dataJson
+            });
+            //para visualizar os dados enviados
+            //const res = await req.json();
+
+            //Falta fazer:
+            //colocar uma msg de sistema
+            //limpar msg
+
+            //limpar os campos
+            this.nome = "",
+            this.carne = "",
+            this.pao = "",
+            this.opcionais = ""
         },
     }
 }
