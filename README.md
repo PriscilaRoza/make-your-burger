@@ -2,10 +2,9 @@
 ![image](https://user-images.githubusercontent.com/83733895/179429952-cd58d34d-038c-4ad5-9af3-ee2ff50edeaf.png)
 
 ### Crud em VueJs - curso do [Matheus Battisti - Hora de Codar](https://youtube.com/playlist?list=PLnDvRpP8BnezDglaAvtWgQXzsOmXUuRHL)
-Pratiquei
-- v-if
-- v-for
-- v-show
+Coloquei em pratica os seguintes conceitos:
+- v-if , v-for, v-show
+- métodos
 - Lifecycle
 - eventos
 - $emit
